@@ -4,6 +4,8 @@
     "@openzeppelin/test-helpers": "^0.5.15",
     "@truffle/hdwallet-provider": "^2.0.8",
     "chai": "^4.3.6",
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0"
   }
 }

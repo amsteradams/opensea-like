@@ -2,7 +2,7 @@
 pragma solidity 0.8.13;
 ///@author Adam
 
-import "./simpleNft.sol";
+import "./SimpleNft.sol";
 contract Storage{
     event NewCollectionStored();
     ///@custom:collections pas besoin de getter du coup je l'ai mise en public
@@ -10,7 +10,7 @@ contract Storage{
     struct Collection {
         string name;
         string symbol;
-        simpleNft tokenContract;
+        SimpleNft tokenContract;
         address owner;
         string baseUri;
     }
@@ -24,12 +24,12 @@ contract Storage{
     function addCollection(
         string memory _name,
         string memory _symbol,
-        simpleNft _contractAddress,
+        SimpleNft _contractAddress,
         address _owner,
         string memory _baseUri
     )external{
         require(collections.length <= 3 gwei, "dos risk, contact admin");
-        simpleNft token = simpleNft(_contractAddress);
+        SimpleNft token = SimpleNft(_contractAddress);
         Collection memory tmp = Collection(_name, _symbol, token,_owner, _baseUri);
         collections.push(tmp);
     }

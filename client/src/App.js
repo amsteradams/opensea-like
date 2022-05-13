@@ -5,7 +5,13 @@ import "./App.css";
 import factoryContract from "./contracts/NftFactory.json";
 import sellingFactoryContract from "./contracts/SellingFactory.json";
 import storageContract from "./contracts/Storage.json";
-
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import Home from "./components/Home/Home";
 export const ContractContext = createContext();
 
 const App = () => {
@@ -65,9 +71,13 @@ const App = () => {
   };
   if(ContractVar.web3){
     return (
-      <ContractContext.Provider value={{ ContractVar, setContractVar}}>
-      
-      </ContractContext.Provider>
+      <BrowserRouter>
+        <ContractContext.Provider value={{ ContractVar, setContractVar}}>
+          <Routes>
+              <Route path="/" element={<Home />} />
+          </Routes>
+        </ContractContext.Provider>
+      </BrowserRouter>
     );
   }
   else{

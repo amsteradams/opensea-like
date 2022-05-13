@@ -10,6 +10,12 @@ const getWeb3 = () =>
         try {
           // Request account access if needed
           await window.ethereum.enable();
+          window.ethereum.on('chainChanged', () => {
+            window.location.reload();
+          })
+          window.ethereum.on('accountsChanged', () => {
+            window.location.reload();
+          })
           // Accounts now exposed
           resolve(web3);
         } catch (error) {
