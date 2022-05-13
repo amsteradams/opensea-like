@@ -48,5 +48,9 @@ contract Storage{
         }
         return tmp;
     }
+
+        function getAllCollections()external view returns(Collection [] memory){      
+            return collections;
+    }
 }
 
