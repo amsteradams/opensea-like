@@ -20,6 +20,7 @@ export default function Creation() {
         const test = context.ContractVar.contractNftFactory.methods.deployNewNft(stateName, stateSymbol, stateDesc).send({from:context.ContractVar.accounts[0]});
     }
   return (
+    <div id="ctn">
     <div id="creation">
         <h1>Créer une collection : </h1>
         <form id="create-items">
@@ -28,6 +29,7 @@ export default function Creation() {
             <input onChange={e => {setDesc(e.target.value)}} type="text" placeholder='Description' />
             <button onClick={deploy}>Créer</button>
         </form>
+    </div>
     </div>
   )
 }

@@ -82,7 +82,6 @@ const App = () => {
           <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/create" element={<Creation />} />
-              <Route path="/collections" element={<Collections />} />
           </Routes>
         </ContractContext.Provider>
       </BrowserRouter>
