@@ -3,7 +3,7 @@ pragma solidity 0.8.13;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract simpleNft is ERC721{
+contract SimpleNft is ERC721{
  uint private _tokenId;
   string baseUri;
  constructor(string memory _symbol, string memory _name, string memory _baseUri)ERC721(_symbol, _name){

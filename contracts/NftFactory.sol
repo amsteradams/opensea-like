@@ -2,7 +2,7 @@
 pragma solidity 0.8.13;
 
 import "./Storage.sol";
-import "./simpleNft.sol";
+import "./SimpleNft.sol";
 contract NftFactory {
     event ERC721Created(address tokenAddress, address owner);
 
@@ -20,7 +20,7 @@ contract NftFactory {
         public
         returns (address)
     {
-        simpleNft  nft = new simpleNft(_name, _symbol, _baseUri);
+        SimpleNft  nft = new SimpleNft(_name, _symbol, _baseUri);
         emit ERC721Created(address(nft), msg.sender);
         storageContract.addCollection(_name, _symbol, nft, msg.sender, _baseUri);
         return address(nft);
