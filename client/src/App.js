@@ -14,6 +14,9 @@ import {
 import Home from "./components/Home/Home";
 import Navigation from "./components/Navigation/Navigation";
 import Creation from "./components/Creation/Creation";
+import Collections from "./components/Collections/Collections";
+import Header from "./components/Header/Header";
+
 export const ContractContext = createContext();
 
 const App = () => {
@@ -79,6 +82,7 @@ const App = () => {
           <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/create" element={<Creation />} />
+              <Route path="/collections" element={<Collections />} />
           </Routes>
         </ContractContext.Provider>
       </BrowserRouter>
@@ -86,8 +90,7 @@ const App = () => {
   }
   else{
     return (
-        <div className="body-container">
-        </div>
+        <Header/>
     )
   }
   

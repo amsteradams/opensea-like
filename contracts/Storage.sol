@@ -12,7 +12,7 @@ contract Storage{
         string symbol;
         SimpleNft tokenContract;
         address owner;
-        string baseUri;
+        string description;
     }
 
     /**
@@ -26,11 +26,11 @@ contract Storage{
         string memory _symbol,
         SimpleNft _contractAddress,
         address _owner,
-        string memory _baseUri
+        string memory _description   
     )external{
         require(collections.length <= 3 gwei, "dos risk, contact admin");
         SimpleNft token = SimpleNft(_contractAddress);
-        Collection memory tmp = Collection(_name, _symbol, token,_owner, _baseUri);
+        Collection memory tmp = Collection(_name, _symbol, token,_owner, _description);
         collections.push(tmp);
     }
 
@@ -47,6 +47,11 @@ contract Storage{
             }
         }
         return tmp;
+    }  
+
+    function getAllCollections()external view returns(Collection [] memory){      
+            return collections;
     }
+
 }
 
