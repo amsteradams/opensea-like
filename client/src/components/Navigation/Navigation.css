@@ -1,0 +1,22 @@
+#navigation ul {
+    list-style-type: none;
+    display:flex;
+  }
+#navigation a{
+    text-decoration: none;
+    cursor: pointer;
+    color:#121212;
+    margin-right:10px;
+}
+
+#navigation a:hover{
+    text-decoration: none;
+    cursor: pointer;
+    color:blue;
+    margin-right:10px;
+}
+#navigation{
+display: flex;
+justify-content: center;
+align-items: center;
+}
