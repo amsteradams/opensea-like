@@ -17,6 +17,7 @@ import HomePage from "./components/Header/HomePage";
 import Home from "./components/Home/Home";
 
 import Creation from "./components/Creation/Creation";
+import Profil from "./components/Profil/Profil";
 
 import Navigation from "./components/Navigation/Navigation";
 import Collections from "./components/Collections/Collections";
@@ -92,6 +93,7 @@ const App = () => {
           <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Creation />} />
+          <Route path="/profil" element={<Profil />} />
           <Route path="/collection" element={<Collections  data={getContractVar}/>} />
              
               {/* <Route path="/create" element={} /> */}
