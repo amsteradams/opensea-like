@@ -6,8 +6,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 contract SimpleNft is ERC721{
  uint private _tokenId;
   string baseUri;
- constructor(string memory _symbol, string memory _name, string memory _baseUri)ERC721(_symbol, _name){
-   baseUri = _baseUri;
+ constructor(string memory _symbol, string memory _name)ERC721(_symbol, _name){
  }
 
  function mint()public returns(uint){

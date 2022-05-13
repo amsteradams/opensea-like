@@ -14,15 +14,15 @@ contract NftFactory {
     
     function deployNewNft(
         string memory _name,
-         string memory _symbol,
-          string memory _baseUri
+        string memory _symbol,
+        string memory _description
           )
         public
         returns (address)
     {
-        SimpleNft  nft = new SimpleNft(_name, _symbol, _baseUri);
+        SimpleNft  nft = new SimpleNft(_symbol, _name);
         emit ERC721Created(address(nft), msg.sender);
-        storageContract.addCollection(_name, _symbol, nft, msg.sender, _baseUri);
+        storageContract.addCollection(_name, _symbol, nft, msg.sender, _description);
         return address(nft);
     }	
 }
