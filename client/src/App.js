@@ -16,7 +16,11 @@ import Header from "./components/Header/Header";
 import HomePage from "./components/Header/HomePage";
 import Home from "./components/Home/Home";
 
+import Creation from "./components/Creation/Creation";
+
 import Navigation from "./components/Navigation/Navigation";
+import Collections from "./components/Collections/Collections";
+
 export const ContractContext = createContext();
 
 const App = () => {
@@ -66,6 +70,11 @@ const App = () => {
            contractStorage: instance2
         });
 
+       // const { listCollections } = this.state;
+       var  listCollections = await instance2.methods.getAllCollections.call(); 
+        // this.setState({ listCollections });
+       // console.log("listCollections="+listCollections.);
+        
       } catch (error) {
         // Catch any errors for any of the above operations.
         console.log(
@@ -74,13 +83,17 @@ const App = () => {
         console.error(error);
       }
   };
+
   if(ContractVar.web3){
     return (
       <BrowserRouter>
         <ContractContext.Provider value={{ ContractVar, setContractVar}}>
           <Navigation />
           <Routes>
-              <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/create" element={<Creation />} />
+          <Route path="/collection" element={<Collections  data={getContractVar}/>} />
+             
               {/* <Route path="/create" element={} /> */}
           </Routes>
         </ContractContext.Provider>
