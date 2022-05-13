@@ -11,7 +11,11 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
+import Header from "./components/Header/Header";
+import HomePage from "./components/Header/HomePage";
 import Home from "./components/Home/Home";
+
 import Navigation from "./components/Navigation/Navigation";
 export const ContractContext = createContext();
 
@@ -85,8 +89,10 @@ const App = () => {
   }
   else{
     return (
-        <div className="body-container">
-        </div>
+      <>
+        <Header data={getContractVar}/>
+        <HomePage/>
+      </>
     )
   }
   
