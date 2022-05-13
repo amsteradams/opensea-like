@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Navigation from "./components/Navigation/Navigation";
+import Creation from "./components/Creation/Creation";
 export const ContractContext = createContext();
 
 const App = () => {
@@ -77,7 +78,7 @@ const App = () => {
           <Navigation />
           <Routes>
               <Route path="/" element={<Home />} />
-              {/* <Route path="/create" element={} /> */}
+              <Route path="/create" element={<Creation />} />
           </Routes>
         </ContractContext.Provider>
       </BrowserRouter>
