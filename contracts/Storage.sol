@@ -47,6 +47,14 @@ contract Storage{
             }
         }
         return tmp;
+    }
+
+    function getCollection(SimpleNft _addr)external view returns(Collection memory){
+        for (uint256 index = 0; index < collections.length; index++) {
+            if(collections[index].tokenContract == _addr){
+                return collections[index];
+            }
+        }
     }  
 
     function getAllCollections()external view returns(Collection [] memory){      

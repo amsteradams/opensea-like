@@ -1,0 +1,9 @@
+#mint-btn{
+    margin-top: 2.5%;
+    width:150px;
+    height:40px;
+    border-radius: 5px;
+    color: white;
+    background-color: #121212;
+    cursor: pointer;
+}

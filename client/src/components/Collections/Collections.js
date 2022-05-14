@@ -18,32 +18,42 @@ export default function Collections(props) {
     useEffect(() => {
         setElements([]);
       state.forEach(element => {
-        tmp.push(<Collection element={element}></Collection>)
+        tmp.push(<Collection key={element.tokenContract} element={element}></Collection>)
       });
       setElements(tmp);
     }, [state])
 
-  const registeringCollect = async () => {
+/*   const registeringCollect = async () => {
   const listCollections = await context.ContractVar.contractStorage.methods.getAllCollections().call({from:context.ContractVar.accounts[0]}); 
     setState(listCollections);
+}  */
+
+const registeringCollect = async () => {
+
+  let listCollections=await context.ContractVar.contractStorage.methods.getAllCollections().call({from:context.ContractVar.accounts[0]}); 
+
+if (props.data === "profil")
+ listCollections  = listCollections.filter(x=>x.owner == context.ContractVar.accounts[0]);
+
+
+  setState(listCollections);
 }
-console.log(state);
 
   return (
       <>
 
 <center>
-<p class="fn_desc">Collections</p>
+<p className="fn_desc">Collections</p>
 </center>
-<div class="anor_fn_collection_list">
+<div className="anor_fn_collection_list">
 
-                    <ul class="anor_fn_list" data-cols="3" data-gap="40">
+                    <ul className="anor_fn_list" data-cols="3" data-gap="40">
 
                     {elements}
 
                     </ul>
 
-                    <div class="clearfix"></div>
+                    <div className="clearfix"></div>
 
 
 

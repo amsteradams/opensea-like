@@ -16,6 +16,9 @@ import Navigation from "./components/Navigation/Navigation";
 import Creation from "./components/Creation/Creation";
 import Collections from "./components/Collections/Collections";
 import Header from "./components/Header/Header";
+import HomePage from "./components/Header/HomePage";
+import DisplayCollection from "./components/DisplayCollection/DisplayCollection";
+import Profil from "./components/Profile/Profil";
 
 export const ContractContext = createContext();
 
@@ -63,7 +66,7 @@ const App = () => {
            accounts, 
            contractNftFactory: instance ,
            contractSellingFactory: instance1,
-           contractStorage: instance2
+           contractStorage: instance2,
         });
 
       } catch (error) {
@@ -82,6 +85,8 @@ const App = () => {
           <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/create" element={<Creation />} />
+              <Route path="/profil" element={<Profil />} />
+              <Route path="/collection/:id" element={<DisplayCollection />}/>
           </Routes>
         </ContractContext.Provider>
       </BrowserRouter>
@@ -89,7 +94,10 @@ const App = () => {
   }
   else{
     return (
-        <Header/>
+      <>
+        <Header data={getContractVar}/>
+        <HomePage />
+      </>
     )
   }
   

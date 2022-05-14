@@ -1,0 +1,26 @@
+#nft{
+    width:25%;
+
+    border-radius: 5px;
+    height:25vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    position: relative;
+    -webkit-box-shadow: 0px 1px 12px -2px rgba(0,0,0,0.61); 
+    box-shadow: 0px 1px 12px -2px rgba(0,0,0,0.61);
+}
+#nft #id{
+    position: absolute;
+    top: 0px;
+    left: 10px;
+}
+#nft img{
+    width:20%;
+    height: auto;
+}
+#addOwner{
+    font-size: 0.8em;
+}
