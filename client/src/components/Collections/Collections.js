@@ -14,8 +14,8 @@ export default function Collections(props) {
     registeringCollect();
     }, [])
 
-    const tmp = [];
     useEffect(() => {
+      const tmp = [];
         setElements([]);
       state.forEach(element => {
         tmp.push(<Collection key={element.tokenContract} element={element}></Collection>)
