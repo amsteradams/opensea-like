@@ -1,9 +1,11 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom';
+import "./Collection.css";
 export default function Collection(props) {
 
     return (
         <>
+        <Link id='lien' to={'/collection/' + props.element[2]}>
     <li>
         <div class="fn__collection_item">
             <div class="title_holder">
@@ -25,7 +27,7 @@ export default function Collection(props) {
 
         </div>
     </li>
-
+    </Link>
      </>
       )
   }

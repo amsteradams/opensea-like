@@ -36,6 +36,8 @@ const App = () => {
     getContractVar();
   }, []);
 
+  
+
   const getContractVar = async () => {
     try {
       // Get network provider and web3 instance.

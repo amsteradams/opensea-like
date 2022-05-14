@@ -10,6 +10,7 @@ export default function DisplayCollection() {
     const [collection, setCollection] = useState([]);
     const [instance, setInstance] = useState();
     const [nfts, setNfts] = useState([]);
+    const [index, setIndex] = useState(0);
     const param = useParams();
 
      useEffect(() => {
@@ -57,10 +58,12 @@ export default function DisplayCollection() {
                 await instance.methods.ownerOf(i).call({from:context.ContractVar.accounts[0]});
                 let uri = await instance.methods.tokenURI(i).call({from:context.ContractVar.accounts[0]});
                 let owner = await instance.methods.ownerOf(i).call({from:context.ContractVar.accounts[0]});
-                tmpArr.push([<DisplayNft key={i} i={i} uri={uri} owner={owner}/>]);
+                let img = await instance.methods.tokenURI(i).call({from:context.ContractVar.accounts[0]});
+                tmpArr.push([<DisplayNft img={img} key={i} i={i} uri={uri} owner={owner}/>]);
                 i ++;
             }
             catch{
+                setIndex(i);
                 break;
             }
         } 
@@ -76,7 +79,7 @@ export default function DisplayCollection() {
             <div id='cdescription'>{collection[3]}</div>
             </div>
         </div>
-        <Mint collection ={param.id} contract={instance}/>
+        <Mint index={index} collection ={param.id} contract={instance}/>
         <div id='down-part'>
             {nfts}
         </div>

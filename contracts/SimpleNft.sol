@@ -5,25 +5,23 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract SimpleNft is ERC721{
  uint private _tokenId;
-  string baseUri;
+ mapping(uint => string) uri;
  constructor(string memory _symbol, string memory _name)ERC721(_symbol, _name){
  }
 
- function mint()public returns(uint){
+ function mint(string memory _uri)public returns(uint){
    _tokenId +=1 ; 
    _mint(msg.sender, _tokenId);
+   _setTokenUri(_tokenId, _uri);
    return _tokenId;
  }
 
+ function _setTokenUri(uint _tId, string memory _uri)private{
+   uri[_tId] = _uri;
+ }
+
  function tokenURI(uint _tId)override public view returns(string memory){
-   return string(abi.encodePacked(baseUri, "/", Strings.toString(_tId),".json"));
+   return uri[_tId];
  }
 
- function setBaseUri(string memory _baseUri)external {
-   baseUri = _baseUri;
- }
-
- function getBaseUri()external view returns(string memory){
-   return baseUri;
- }
 }
