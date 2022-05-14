@@ -1,5 +1,6 @@
 import React from 'react'
 import Collections from '../Collections/Collections';
+import DisplayListNft from '../DisplayListNft/DisplayListNft';
 import "./Profil.css";
 export default function Profil() {
   return (
@@ -12,9 +13,8 @@ export default function Profil() {
     <br/>
     <Collections data="profil"/>
     <h1>Mes NFT </h1>
+    <DisplayListNft/>
     
-
-
     </div>
       
       </div>
