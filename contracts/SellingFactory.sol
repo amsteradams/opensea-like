@@ -4,6 +4,11 @@ pragma solidity ^0.8.13;
 
 import "./AuctionOrSale.sol";
 
+/**
+ * @title SellingFactory
+ * @author Adam
+ * @dev Le contract fournit une factory pour creer et liste les addresses des nft en vente ou aux encheres
+ */
 contract SellingFactory{
     ///@dev il faudrait créer une fonction qui nettoie les tableaux et qui se lance à chaque création de auctionOrSale
     address[] allSales; //stockage des collections en vente directe
@@ -35,10 +40,14 @@ contract SellingFactory{
         }
     }
 
+    ///@notice liste des nft en ventes
+    ///@return  address[] retourne un tableau d'addresse
     function getAllSales()external view returns(address [] memory){
         return allSales;
     }
 
+    ///@notice liste les nft aux encheres 
+    /// @return  address[] retourne un tableau d'addresse
     function getAllAuctions()external view returns(address [] memory){
         return allAuctions;
     }

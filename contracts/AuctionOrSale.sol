@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
-///@author Adam
 
 interface IERC721{
     function safeTransferFrom(
@@ -16,6 +15,11 @@ interface IERC721{
     ) external;
 }
 
+/**
+ * @title AuctionOrSale
+ * @author Adam
+ * @dev This contract provide function to buy,sell,bid and withdraw an nft
+ */
 contract AuctionOrSale {
     event Start(address seller, uint amount);
     event Sell(address indexed sender, uint amount);
@@ -40,9 +44,12 @@ contract AuctionOrSale {
     uint public highestBid;//both
     mapping(address => uint) public bids;//auction
 
+ 
     ///@param _auctionTime si il est à zero c'est un contrat de vente, sinon auction
     ///@param _nft est l'addresse de la collection nft
     ///@param _price va venir set highestBit
+    ///@param _auctionTime temps de la vente
+    ///@param _seller le vendeur
     constructor(
         address _nft,
         uint _nftId,
@@ -56,6 +63,7 @@ contract AuctionOrSale {
         seller = payable(_seller);
         highestBid = _price;
     }
+
     /**
     *@notice Commence l'auction et transfere le nft sur le contrat, il faut approuver avant
     */
@@ -100,7 +108,6 @@ contract AuctionOrSale {
 
     /**
     *@notice met fin à l'auction si le temps est écoulé, transfere le nft au gagnant de la vente
-    *@dev c'est cette fonction que j'arrive pas à tester 
     */
     function end() external {
         require(auctionStarted, "not started");
@@ -167,7 +174,7 @@ contract AuctionOrSale {
     }
 
     /**
-    *@dev renvoie la balance du contrat
+    *@dev renvoie le temps current
     */
     function getCurrentTimeStamp()external view returns(uint){
         return block.timestamp;

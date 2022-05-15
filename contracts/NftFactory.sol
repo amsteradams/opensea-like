@@ -3,6 +3,12 @@ pragma solidity 0.8.13;
 
 import "./Storage.sol";
 import "./SimpleNft.sol";
+
+/**
+ * @title NftFactory
+ * @author Adam
+ * @dev Le contract fournit une factory pour le deploiement d'une collection et d'un nft
+ */
 contract NftFactory {
     event ERC721Created(address tokenAddress, address owner);
 
@@ -12,6 +18,11 @@ contract NftFactory {
         storageContract = Storage(_storageAddress);
     }
     
+    ///@notice Creation d'une collection et d'un nft
+    ///@param _name nom du nft
+    ///@param _symbol symbole du nft
+    ///@param _description description du nft
+    /// @return  address l'address du nft
     function deployNewNft(
         string memory _name,
         string memory _symbol,
