@@ -64,7 +64,7 @@ export default function MarketPlace() {
             const ended = await instance.methods.ended().call({from:context.ContractVar.accounts[0]});
             const destroyed = await instance.methods.destroyed().call({from:context.ContractVar.accounts[0]});
             const seller = await instance.methods.seller().call({from:context.ContractVar.accounts[0]});
-            if(ended === false){
+            if(ended === false || context.ContractVar.accounts[0] === seller){
                 console.log(seller)
                 if(destroyed === false || context.ContractVar.accounts[0] === seller ){
                 const tokenAddress = await instance.methods.nft().call({from:context.ContractVar.accounts[0]});
@@ -89,7 +89,7 @@ export default function MarketPlace() {
                 }
             }
             }
-            else if(ended === true && (destroyed === false || context.ContractVar.accounts[0] === seller)){
+            else if(ended === true && destroyed === false){
                 console.log(seller)
                 const tokenAddress = await instance.methods.nft().call({from:context.ContractVar.accounts[0]});
                 const tokenId = await instance.methods.nftId().call({from:context.ContractVar.accounts[0]});
