@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react'
 import { ContractContext } from '../../App';
 import "./DisplayListNft.css";
-import { useParams } from 'react-router-dom';
+import {Link} from "react-router-dom";
 import nftContract from '../../contracts/SimpleNft.json';
 import DisplayNft from '../DisplayNft/DisplayNft';
 
@@ -30,24 +30,28 @@ export default function DisplayListNft() {
         )
         const tmp = await instance.methods.balanceOf(context.ContractVar.accounts[0]).call({from:context.ContractVar.accounts[0]});
         if(tmp > 0){
-            let i = 1;
+            let j = 1;
             while(true){
                 try{
-                const owner = await instance.methods.ownerOf(i).call({from:context.ContractVar.accounts[0]});
+                const owner = await instance.methods.ownerOf(j).call({from:context.ContractVar.accounts[0]});
                 if(owner === context.ContractVar.accounts[0]){
-                   const uri = await instance.methods.tokenURI(i).call({from:context.ContractVar.accounts[0]});
-                   tmpArr.push(<DisplayNft img={uri} i={i} owner={context.ContractVar.accounts[0]}/>)     
+                   const uri = await instance.methods.tokenURI(j).call({from:context.ContractVar.accounts[0]});
+                   tmpArr.push(
+                   <DisplayNft key={elements[j -1] + i} img={uri} i={j} owner={context.ContractVar.accounts[0]}>
+                     <Link key={elements[i -1] + i} to={'/sell/' + elements[i] + '/' + j + '/' + uri.substr(34)}><button>Vendre</button></Link>
+                   </DisplayNft>
+                   )     
                 } 
-                i++ 
+              j++;  
             }catch(error){
                 setNfts(tmpArr);
                 break;
             } 
             }
         }
+        i++ 
       }  
     }
-    console.log(nfts);
     const getAllCollections = async () => {
         const tmp = [];
         setElements([]);
@@ -56,7 +60,6 @@ export default function DisplayListNft() {
       });
       setElements(tmp);
     }
-    console.log(elements);
     const getCollections= async () => {
         let listCollections=await context.ContractVar.contractStorage.methods.getAllCollections().call({from:context.ContractVar.accounts[0]});
         setArr(listCollections);

@@ -14,6 +14,7 @@ export default function DisplayNft(props) {
         <img src={state}/>
         <p id="id">id#{props.i}</p>
         <p id="addOwner">{props.owner}</p>
+        {props.children}
     </div>
   )
 }

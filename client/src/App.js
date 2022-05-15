@@ -19,7 +19,9 @@ import Header from "./components/Header/Header";
 import HomePage from "./components/Header/HomePage";
 import DisplayCollection from "./components/DisplayCollection/DisplayCollection";
 import Profil from "./components/Profile/Profil";
-
+import Selling from "./components/Selling/Selling";
+import MarketPlace from "./components/MarketPlace/MarketPlace";
+import ManageSell from "./components/ManageSell/ManageSell";
 export const ContractContext = createContext();
 
 const App = () => {
@@ -89,6 +91,9 @@ const App = () => {
               <Route path="/create" element={<Creation />} />
               <Route path="/profil" element={<Profil />} />
               <Route path="/collection/:id" element={<DisplayCollection />}/>
+              <Route path="/sell/:collection/:id/:uri" element={<Selling />}/>
+              <Route path="/marketplace" element={<MarketPlace />}/>
+              <Route path="/marketplace/:owner/:tokenAddress/:contrat/:uri/:id" element={<ManageSell />}/>
           </Routes>
         </ContractContext.Provider>
       </BrowserRouter>

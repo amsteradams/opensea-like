@@ -34,4 +34,12 @@ contract SellingFactory{
             emit NewAuction(address(_contract), msg.sender);
         }
     }
+
+    function getAllSales()external view returns(address [] memory){
+        return allSales;
+    }
+
+    function getAllAuctions()external view returns(address [] memory){
+        return allAuctions;
+    }
 }

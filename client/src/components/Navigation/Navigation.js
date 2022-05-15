@@ -13,6 +13,7 @@ export default function Navigation() {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/create">Creation</Link></li>
             <li><Link to="/profil">Profil</Link></li>
+            <li><Link to="/marketplace">MarketPlace</Link></li>
         </ul>
         <Avatar />
     </div>
