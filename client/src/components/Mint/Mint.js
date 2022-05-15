@@ -32,7 +32,7 @@ console.log(uri);
   return (
     <div>
     <input type='file' onChange={onChange}/>
-    <button onClick={mint} id="mint-btn">Mint</button>
+    { uri!=undefined ?  <button onClick={mint} id="mint-btn" >Mint</button> : null }
     </div>
   )
 }

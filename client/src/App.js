@@ -22,6 +22,7 @@ import Profil from "./components/Profile/Profil";
 import Selling from "./components/Selling/Selling";
 import MarketPlace from "./components/MarketPlace/MarketPlace";
 import ManageSell from "./components/ManageSell/ManageSell";
+import ManageAuction from "./components/ManageAuction/ManageAuction";
 export const ContractContext = createContext();
 
 const App = () => {
@@ -94,6 +95,7 @@ const App = () => {
               <Route path="/sell/:collection/:id/:uri" element={<Selling />}/>
               <Route path="/marketplace" element={<MarketPlace />}/>
               <Route path="/marketplace/:owner/:tokenAddress/:contrat/:uri/:id" element={<ManageSell />}/>
+              <Route path="/marketplace/auction/:owner/:tokenAddress/:contrat/:uri/:id" element={<ManageAuction />}/>
           </Routes>
         </ContractContext.Provider>
       </BrowserRouter>

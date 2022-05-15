@@ -24,7 +24,8 @@ export default function ManageSell() {
         console.log(started);
         const price = await saleContract.methods.highestBid().call({from:context.ContractVar.accounts[0]});
         const ended = await saleContract.methods.ended().call({from:context.ContractVar.accounts[0]});
-        setData({tokenContract:tokenContract, saleContract:saleContract, started:started, price:price,ended:ended}); 
+        const destroyed = await saleContract.methods.destroyed().call({from:context.ContractVar.accounts[0]});
+        setData({tokenContract:tokenContract, saleContract:saleContract, started:started, price:price,ended:ended, destroyed:destroyed}); 
         await tokenContract.events.Approval()
           .on('data',async (event) => {
               if(event.returnValues.owner == context.ContractVar.accounts[0] && bool === false){
@@ -69,7 +70,7 @@ export default function ManageSell() {
     )
   }  
   if(params.owner === context.ContractVar.accounts[0]){
-    if(data.ended === true){
+    if(data.ended === true && data.destroyed === false){
         return(
         <div>
         <DisplayNft img={'https://gateway.pinata.cloud/ipfs/' + params.uri} i={params.id} owner={params.owner}>{data.price} wei
@@ -78,7 +79,15 @@ export default function ManageSell() {
         </div>
         )
     }
-    //#
+    else if(data.destroyed===true){
+        return(
+            <div>
+            <DisplayNft img={'https://gateway.pinata.cloud/ipfs/' + params.uri} i={params.id} owner={params.owner}>{data.price} wei
+            <p>Vente effectuée</p>
+            </DisplayNft>
+            </div>
+            )
+    }
     else{
   return (
     <div id="manageSell">

@@ -4,6 +4,8 @@ import "./DisplayCollection.css";
 import { useParams } from 'react-router-dom';
 import nftContract from '../../contracts/SimpleNft.json';
 import DisplayNft from '../DisplayNft/DisplayNft';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Mint from '../Mint/Mint';
 export default function DisplayCollection() {
     const context = useContext(ContractContext);
@@ -68,9 +70,24 @@ export default function DisplayCollection() {
             }
         } 
         setNfts(tmpArr);
+        instance.events.Minted()
+        .on('data', async (event) => {
+            //toast.success("Nft created with success");
+            
+            console.log(event);
+            if (event.returnValues._owner == context.ContractVar.accounts[0])
+                setTimeout(function() {window.location.reload()}, 3000);
+        })
+        .on('error', (err) => 
+        {
+            toast.error("Error : "+ err);
+        }
+    );  
     }
     }
   return (
+    <>
+    <ToastContainer />  
     <div id="display-collection">
         <div id='up-part'>
             <div id='cName'>{collection[0]}</div>
@@ -84,5 +101,6 @@ export default function DisplayCollection() {
             {nfts}
         </div>
     </div>
+    </>
   )
 }
