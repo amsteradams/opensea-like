@@ -168,6 +168,7 @@ contract AuctionOrSale {
 
     /**
     *@dev renvoie la balance du contrat
+    *@return  _balance renvoie la balance
     */
     function getBalance()external view returns(uint){
         return address(this).balance;
@@ -175,6 +176,7 @@ contract AuctionOrSale {
 
     /**
     *@dev renvoie le temps current
+    *@return  _time renvoie le temps current
     */
     function getCurrentTimeStamp()external view returns(uint){
         return block.timestamp;
