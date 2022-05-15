@@ -34,6 +34,7 @@ contract AuctionOrSale {
     bool public started;//sale
     bool public auctionStarted;//auction
     bool public ended;//auction
+    bool public destroyed;//both
     uint32 public auctionTime;//auction
     address public highestBidder;//auction
     uint public highestBid;//both
@@ -91,6 +92,7 @@ contract AuctionOrSale {
     function withdrawAuction() external {
         uint bal = bids[msg.sender];
         bids[msg.sender] = 0;
+        destroyed = true;
         payable(msg.sender).transfer(bal);
 
         emit Withdraw(msg.sender, bal);
@@ -139,7 +141,7 @@ contract AuctionOrSale {
         bool sent = payable(address(this)).send(highestBid);
         require(sent, "failure to send eth");
         nft.transferFrom(address(this), msg.sender, nftId);
-        started = false;
+        ended = true;
         emit Bought(msg.sender, highestBid);
     }
 
@@ -147,9 +149,12 @@ contract AuctionOrSale {
     *@notice permet de retirer les fonds pour le vendeur
     */
     function withdraw()external payable{
+        require(msg.sender == seller, "Cheaper");
+        require(ended == true, 'not ended');
         bool tmp;
         require(tmp == false, 'reentrancy detected');
         tmp = false;
+        destroyed = true;
         payable(msg.sender).transfer(highestBid);
         emit Withdraw(msg.sender, highestBid);
     } 

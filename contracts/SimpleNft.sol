@@ -4,6 +4,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract SimpleNft is ERC721{
+  event Minted(uint _tokenId, address _owner);
  uint private _tokenId;
  mapping(uint => string) uri;
  constructor(string memory _symbol, string memory _name)ERC721(_symbol, _name){
@@ -13,6 +14,7 @@ contract SimpleNft is ERC721{
    _tokenId +=1 ; 
    _mint(msg.sender, _tokenId);
    _setTokenUri(_tokenId, _uri);
+   emit Minted(_tokenId, msg.sender);
    return _tokenId;
  }
 
