@@ -1,5 +1,7 @@
 import React,{useState, useContext, useEffect} from 'react'
 import { ContractContext } from '../../App';
+
+
 import "./Mint.css";
 import { pinFileToIPFS } from './PinFileToIPFS';
 import { postJSONBody } from './postJsonBody';
@@ -15,6 +17,7 @@ export default function Mint(props) {
         await props.contract.methods.mint(uri).send({from:context.ContractVar.accounts[0]});
     }
 
+
     const onChange = async (e) => {
         const file = e.target.files[0];
         //console.log(file);
@@ -29,10 +32,18 @@ export default function Mint(props) {
         } 
     }
 console.log(uri);
+
+
   return (
+    <>
+ 
     <div>
     <input type='file' onChange={onChange}/>
-    <button onClick={mint} id="mint-btn">Mint</button>
+
+    {/* <button onClick={mint} id="mint-btn" disabled={uri==undefined}>Mint</button> */}
+   
+    { uri!=undefined ?  <button onClick={mint} id="mint-btn" >Mint</button> : null }
     </div>
+    </>
   )
 }

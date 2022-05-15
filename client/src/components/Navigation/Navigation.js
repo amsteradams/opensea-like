@@ -4,6 +4,7 @@ import {
     Link
   } from "react-router-dom";
 import Title from './Title/Title';
+import Avatar from './Avatar/Avatar';
 export default function Navigation() {
   return (
     <div id="navigation">
@@ -13,6 +14,7 @@ export default function Navigation() {
             <li><Link to="/create">Creation</Link></li>
             <li><Link to="/profil">Profil</Link></li>
         </ul>
+        <Avatar />
     </div>
   )
 }

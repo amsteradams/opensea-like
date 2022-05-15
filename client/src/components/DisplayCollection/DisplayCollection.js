@@ -5,6 +5,9 @@ import { useParams } from 'react-router-dom';
 import nftContract from '../../contracts/SimpleNft.json';
 import DisplayNft from '../DisplayNft/DisplayNft';
 import Mint from '../Mint/Mint';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function DisplayCollection() {
     const context = useContext(ContractContext);
     const [collection, setCollection] = useState([]);
@@ -37,6 +40,7 @@ export default function DisplayCollection() {
         tmp.push(collec.description);
         setCollection(tmp);
     }
+
     const getNftContract = async () => {
         try {
             const instance = new context.ContractVar.web3.eth.Contract(
@@ -53,24 +57,46 @@ export default function DisplayCollection() {
         setNfts([]);
         let tmpArr = [];
         if(instance){
-        while (true) {
-            try{
-                await instance.methods.ownerOf(i).call({from:context.ContractVar.accounts[0]});
-                let uri = await instance.methods.tokenURI(i).call({from:context.ContractVar.accounts[0]});
-                let owner = await instance.methods.ownerOf(i).call({from:context.ContractVar.accounts[0]});
-                let img = await instance.methods.tokenURI(i).call({from:context.ContractVar.accounts[0]});
-                tmpArr.push([<DisplayNft img={img} key={i} i={i} uri={uri} owner={owner}/>]);
-                i ++;
-            }
-            catch{
-                setIndex(i);
-                break;
-            }
-        } 
-        setNfts(tmpArr);
+            while (true) {
+                try{
+                    await instance.methods.ownerOf(i).call({from:context.ContractVar.accounts[0]});
+                    let uri = await instance.methods.tokenURI(i).call({from:context.ContractVar.accounts[0]});
+                    let owner = await instance.methods.ownerOf(i).call({from:context.ContractVar.accounts[0]});
+                    let img = await instance.methods.tokenURI(i).call({from:context.ContractVar.accounts[0]});
+                    tmpArr.push([<DisplayNft img={img} key={i} i={i} uri={uri} owner={owner}/>]);
+                    i ++;
+                }
+                catch{
+                    setIndex(i);
+                    break;
+                }
+            } 
+            setNfts(tmpArr);
+
+            instance.events.Minted()
+                .on('data', async (event) => {
+                    //toast.success("Nft created with success");
+                    
+                    console.log(event);
+                    if (event.returnValues._owner == context.ContractVar.accounts[0])
+                        setTimeout(function() {window.location.reload()}, 3000);
+                })
+                .on('error', (err) => 
+                {
+                    toast.error("Error : "+ err);
+                }
+            );  
+        }
+
+
     }
-    }
+
+
+ 
+
   return (
+      <>
+         <ToastContainer />
     <div id="display-collection">
         <div id='up-part'>
             <div id='cName'>{collection[0]}</div>
@@ -79,10 +105,12 @@ export default function DisplayCollection() {
             <div id='cdescription'>{collection[3]}</div>
             </div>
         </div>
-        <Mint index={index} collection ={param.id} contract={instance}/>
+       
+        <Mint index={index} collection ={param.id} contract={instance} />
         <div id='down-part'>
             {nfts}
         </div>
     </div>
+    </>
   )
 }
