@@ -30,7 +30,7 @@ export default function Mint(props) {
     }
 console.log(uri);
   return (
-    <div>
+    <div id='mint'>
     <input type='file' onChange={onChange}/>
     { uri!=undefined ?  <button onClick={mint} id="mint-btn" >Mint</button> : null }
     </div>

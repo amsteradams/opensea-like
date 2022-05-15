@@ -95,7 +95,7 @@ const App = () => {
               <Route path="/sell/:collection/:id/:uri" element={<Selling />}/>
               <Route path="/marketplace" element={<MarketPlace />}/>
               <Route path="/marketplace/:owner/:tokenAddress/:contrat/:uri/:id" element={<ManageSell />}/>
-              <Route path="/marketplace/auction/:owner/:tokenAddress/:contrat/:uri/:id" element={<ManageAuction />}/>
+              <Route path="/marketplace/auctions/:owner/:tokenAddress/:contrat/:uri/:id" element={<ManageAuction />}/>
           </Routes>
         </ContractContext.Provider>
       </BrowserRouter>

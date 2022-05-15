@@ -4,19 +4,15 @@ import DisplayListNft from '../DisplayListNft/DisplayListNft';
 import "./Profil.css";
 export default function Profil() {
   return (
-      <>
-          <div id="ctn">
-    <div id="creation">
-    <h1>Mon Profil </h1>
-    <br/>
-    <h1>Mes collections </h1>
-    <br/>
-    <Collections data="profil"/>
-    <h1>Mes NFT </h1>
-    <DisplayListNft />
-    </div>
-      
+      <div id="creation">
+        <h1>Mes collections </h1>
+        <div id='dCollec'>
+      <Collections data="profil"/>
+        </div>
+        <h1>Mes NFT </h1>
+        <div id='dNfts'>
+      <DisplayListNft />
+        </div>
       </div>
-      </>
   )
 }

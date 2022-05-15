@@ -136,14 +136,14 @@ export default function MarketPlace() {
                 if(started === true){
                     const price = await instance.methods.highestBid().call({from:context.ContractVar.accounts[0]});
                     tmpArr.push(
-                    <Link to={'/marketplace/' + owner + '/'+ tokenAddress +'/'+ auctions[i] + '/' + uri.substr(34) + '/' + tokenId} >
+                    <Link to={'/marketplace/auctions/' + owner + '/'+ tokenAddress +'/'+ auctions[i] + '/' + uri.substr(34) + '/' + tokenId} >
                     <DisplayNft key={tokenId} img={uri} i={tokenId} owner={owner}>{price}</DisplayNft>
                     </Link>)
                 }
                 else{
                     const price = 'not started';
                     tmpArr.push(
-                    <Link to={'/marketplace/' + owner + '/'+ tokenAddress +'/'+ auctions[i] + '/' + uri.substr(34) + '/' + tokenId} >
+                    <Link to={'/marketplace/auctions/' + owner + '/'+ tokenAddress +'/'+ auctions[i] + '/' + uri.substr(34) + '/' + tokenId} >
                     <DisplayNft key={tokenId} img={uri} i={tokenId} owner={owner}>{price}</DisplayNft>
                     </Link>)
                 }
@@ -160,14 +160,14 @@ export default function MarketPlace() {
                 if(started === true){
                     const price = await instance.methods.highestBid().call({from:context.ContractVar.accounts[0]});
                     tmpArr.push(
-                    <Link to={'/marketplace/' + owner + '/'+ tokenAddress +'/'+ auctions[i] + '/' + uri.substr(34) + '/' + tokenId} >
+                    <Link to={'/marketplace/auctions/' + owner + '/'+ tokenAddress +'/'+ auctions[i] + '/' + uri.substr(34) + '/' + tokenId} >
                     <DisplayNft key={tokenId} img={uri} i={tokenId} owner={owner}>{price}</DisplayNft>
                     </Link>)
                 }
                 else{
                     const price = 'not started';
                     tmpArr.push(
-                    <Link to={'/marketplace/' + owner + '/'+ tokenAddress +'/'+ auctions[i] + '/' + uri.substr(34) + '/' + tokenId} >
+                    <Link to={'/marketplace/auctions/' + owner + '/'+ tokenAddress +'/'+ auctions[i] + '/' + uri.substr(34) + '/' + tokenId} >
                     <DisplayNft key={tokenId} img={uri} i={tokenId} owner={owner}>{price}</DisplayNft>
                     </Link>)
                 }

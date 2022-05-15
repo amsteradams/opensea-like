@@ -1,3 +1,9 @@
 ul .anor_fn_list{
     margin-top: 10%;
 }
+
+#coll-ctn{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

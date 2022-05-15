@@ -2,3 +2,23 @@ a{
     color: inherit;
     text-decoration: none;
 }
+
+#marketplace{
+    display: flex;
+    flex-wrap: wrap;
+}
+#filters{
+    display: flex;
+    justify-content: center;
+    width:100vw;
+}
+
+#filters button{
+    margin: 15px;
+    background-color: #121212;
+    color:white;
+    size: larger;
+    border-radius: 5px;
+    cursor: pointer;
+}
+

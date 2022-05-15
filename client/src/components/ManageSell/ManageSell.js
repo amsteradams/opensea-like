@@ -64,8 +64,9 @@ export default function ManageSell() {
   if(data.started===false){
     return(
         <div id="manageSell">
-        <DisplayNft img={'https://gateway.pinata.cloud/ipfs/' + params.uri} i={params.id} owner={params.owner}/>
+        <DisplayNft img={'https://gateway.pinata.cloud/ipfs/' + params.uri} i={params.id} owner={params.owner}>
         <button onClick={vendre}>Commencer la vente</button>
+        </DisplayNft>
         </div>
     )
   }  

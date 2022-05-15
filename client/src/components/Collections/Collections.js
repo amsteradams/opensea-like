@@ -40,34 +40,8 @@ if (props.data === "profil")
 }
 
   return (
-      <>
-
-<center>
-<p className="fn_desc">Collections</p>
-</center>
-<div className="anor_fn_collection_list">
-
-                    <ul className="anor_fn_list" data-cols="3" data-gap="40">
-
-                    {elements}
-
-                    </ul>
-
-                    <div className="clearfix"></div>
-
-
-
-                    {/* <div class="anor_fn_pagination">
-                        <ul>
-                            <li><span class="current">1</span></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><span class="dots">...</span></li>
-                            <li><a href="#">12</a></li>
-                        </ul>
-                    </div> */}
-
-                </div>
-                </>
+  <div id="coll-ctn">
+    {elements}
+    </div>
     )
 }
